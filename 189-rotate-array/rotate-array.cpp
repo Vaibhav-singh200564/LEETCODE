@@ -2,8 +2,8 @@ class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
         int n = nums.size();
-        if (n == 0) return; // Handle empty array
-        k = k % n; // In case k is greater than n
+        if (n == 0) return; 
+        k = k % n; 
 
         if (k > 0) {
             int i = n - k;
