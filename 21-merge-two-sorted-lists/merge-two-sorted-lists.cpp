@@ -1,6 +1,6 @@
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {  // \U0001f501 renamed from merge
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {  
         ListNode* tempA = list1;
         ListNode* tempB = list2;
         ListNode* c = new ListNode(100);
