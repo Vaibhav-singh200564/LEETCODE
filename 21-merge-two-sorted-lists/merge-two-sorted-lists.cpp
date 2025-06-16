@@ -1,6 +1,6 @@
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {  // \U0001f501 renamed from merge
         ListNode* tempA = list1;
         ListNode* tempB = list2;
         ListNode* c = new ListNode(100);
@@ -27,5 +27,26 @@ public:
         }
 
         return c->next;
+    }
+
+    ListNode* sortList(ListNode* head) {
+        if (head == NULL || head->next == NULL) return head;
+
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while (fast->next != NULL && fast->next->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        ListNode* a = head;
+        ListNode* b = slow->next;
+        slow->next = NULL;
+
+        a = sortList(a);
+        b = sortList(b);
+
+        return mergeTwoLists(a, b);  // \U0001f501 updated here too
     }
 };
