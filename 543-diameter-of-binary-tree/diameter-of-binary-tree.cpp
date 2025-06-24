@@ -1,5 +1,5 @@
- 
- class Solution {
+
+class Solution {
 public:
     int maxDia=0;
     int levels(TreeNode* root){
@@ -14,7 +14,4 @@ public:
         diameterOfBinaryTree(root->right);
         return maxDia;
     }
-
 };
-
-
