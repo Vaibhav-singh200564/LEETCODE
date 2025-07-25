@@ -1,16 +1,25 @@
-
-class Solution{
-    public:
-    int countDistinctIntegers(vector<int>& nums){ // <-- name fixed
-        int n = nums.size();
+class Solution {
+public:
+int reverse(int n){
+    int r=0;
+    while(n>0){
+        r=r*10;
+        r=r+(n%10);
+        n=n/10;
+    }
+    return r;
+}
+    int countDistinctIntegers(vector<int>& nums) {
+        int n=nums.size();
+        for(int i=0; i<n; i++){
+            int rev=reverse(nums[i]);
+            nums.push_back(rev);
+        }
         unordered_set<int> s;
-        for(int i = 0; i < n; i++){
-            string rev = to_string(nums[i]);
-            reverse(rev.begin(), rev.end());
-            int reversedNum = stoi(rev);
+        for(int i=0; i<nums.size(); i++){
             s.insert(nums[i]);
-            s.insert(reversedNum);
         }
         return s.size();
     }
+
 };
