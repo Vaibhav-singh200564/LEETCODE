@@ -1,26 +1,10 @@
 class Solution {
 public:
-    bool allCapital(string word) {
-        for (char &ch : word) {
-            if (ch < 'A' || ch > 'Z')
-                return false;
-        }
-        return true;
-    }
-
-    bool allSmall(string word) {
-        for (char &ch : word) {
-            if (ch < 'a' || ch > 'z') {
-                return false;
-            }
-        }
-        return true;  // Moved return statement outside loop
-    }
-
     bool detectCapitalUse(string word) {
-        if (allCapital(word) || allSmall(word) || allSmall(word.substr(1)))  // Fixed function call and substr syntax
-            return true;
-        
-        return false;  // Moved return false inside function properly
+        int upper = 0;
+        for (char c : word) {
+            if (isupper(c)) upper++;
+        }
+        return upper == word.size() || upper == 0 || (upper == 1 && isupper(word[0]));
     }
 };
