@@ -1,14 +1,14 @@
 class Solution {
 public:
     vector<int> findDuplicates(vector<int>& nums) {
-        set<int> seen;          // Ordered set
+        unordered_set<int> seen;
         vector<int> result;
 
         for (int num : nums) {
             if (seen.count(num)) {
-                result.push_back(num); // Duplicate found
+                result.push_back(num); // Already seen → duplicate
             } else {
-                seen.insert(num); // First occurrence
+                seen.insert(num); // First time → insert into set
             }
         }
 
