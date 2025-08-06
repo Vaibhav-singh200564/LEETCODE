@@ -1,19 +1,15 @@
 class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
-        int n = nums.size();
-        vector<bool> check(n + 1, false);  
-        vector<int> v;
-        
-        for (int i = 0; i < n; i++) {
-            int ele = nums[i];
-            check[ele] = true;
+        unordered_set<int> s(nums.begin(), nums.end());
+        vector<int> result;
+
+        for (int i = 1; i <= nums.size(); i++) {
+            if (s.count(i) == 0) {
+                result.push_back(i);
+            }
         }
 
-        for (int i = 1; i <= n; i++) {  
-            if (check[i] == false) v.push_back(i);
-        }
-
-        return v;
+        return result;
     }
 };
