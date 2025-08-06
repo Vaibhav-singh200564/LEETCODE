@@ -5,7 +5,7 @@ public:
         vector<int> result;
 
         for (int i = 1; i <= nums.size(); i++) {
-            if (s.count(i) == 0) {
+            if (s.find(i) == s.end()) {
                 result.push_back(i);
             }
         }
