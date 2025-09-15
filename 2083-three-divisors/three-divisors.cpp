@@ -7,10 +7,11 @@ public:
         } else {
             for (int i = 2; i <= n / 2; i++) {
                 if (n % i == 0) {
-                    if (count == 3) {
+                     count++;
+                    if (count > 3) {
                         return false;
                     }
-                    count++;
+                    // count++;
                 }
             }
             return count==3;
