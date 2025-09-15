@@ -1,10 +1,19 @@
 class Solution {
 public:
     bool isThree(int n) {
-        int root = sqrt(n);
-        if (root * root != n) return false;
-        for (int i = 2; i * i <= root; i++)
-            if (root % i == 0) return false;
-        return root > 1;
+        int count = 2;   
+        if (n == 1 || n == 2 || n == 3) {
+            return false;
+        } else {
+            for (int i = 2; i <= n / 2; i++) {
+                if (n % i == 0) {
+                    if (count == 3) {
+                        return false;
+                    }
+                    count++;
+                }
+            }
+            return count==3;
+        }
     }
 };
