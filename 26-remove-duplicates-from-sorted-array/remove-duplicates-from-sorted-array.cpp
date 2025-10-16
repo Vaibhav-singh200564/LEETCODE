@@ -1,17 +1,22 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        if (nums.empty()) return 0; // Edge case
+        if(nums.empty()) return 0;
 
-        int i = 0; // Pointer for unique elements
-
-        for (int j = 1; j < nums.size(); j++) {
-            if (nums[j] != nums[i]) {
-                i++; // Move pointer for unique elements
-                nums[i] = nums[j]; // Overwrite the next unique position
+        stack<int> st;
+        for(int i = 0; i < nums.size(); i++) {
+            if(st.empty() || st.top() != nums[i]) {
+                st.push(nums[i]); // push only unique numbers
             }
         }
 
-        return i + 1; // Length of unique elements
+        // Copy stack back to nums in reverse order
+        int n = st.size();
+        for(int i = n - 1; i >= 0; i--) {
+            nums[i] = st.top();
+            st.pop();
+        }
+
+        return n; // number of unique elements
     }
 };
