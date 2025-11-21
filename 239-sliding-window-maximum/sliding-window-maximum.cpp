@@ -16,25 +16,24 @@ public:
             if(st.size() == 0) 
                 ngi[i] = n;
             else 
-                ngi[i] = st.top();   // FIX: you wrote ng[i], corrected to ngi[i]
-
-            st.push(i);              // FIX: missing semicolon
+                ngi[i] = st.top();   
+            st.push(i);              
         }
 
         vector<int> ans;
-
-        for(int i = 0; i <= n - k; i++) {  // FIX: condition changed to <= n-k
-            int maxVal = arr[i];          // FIX: variable name cannot be max
-            int j = i;                    // FIX: you forgot int
-
-            while(ngi[j] < i + k) {       // FIX: should check ngi[j], not ngi[i]
-                maxVal = arr[ngi[j]];
+        int j=0;
+        for(int i = 0; i <= n - k; i++) {  
+            if(j<i) j=i;
+            int maxVal = arr[j];                         
+            while(j < i + k) {       
+                maxVal = arr[j];
+                if(ngi[j]>=i+k) break;
                 j = ngi[j];
             }
 
             ans.push_back(maxVal);
         }
 
-        return ans;  // FIX: missing return
+        return ans;  
     }
 };
