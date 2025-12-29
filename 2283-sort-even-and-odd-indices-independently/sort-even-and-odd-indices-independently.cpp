@@ -1,24 +1,20 @@
 class Solution {
 public:
     vector<int> sortEvenOdd(vector<int>& nums) {
-        vector<int> even, odd;
         int n = nums.size();
 
-        // Step 1: Separate even and odd indices
-        for (int i = 0; i < n; i++) {
-            if (i % 2 == 0) even.push_back(nums[i]);
-            else odd.push_back(nums[i]);
+        // Sort even indices (ascending)
+        for(int i = 0; i < n; i += 2) {
+            for(int j = i + 2; j < n; j += 2) {
+                if(nums[i] > nums[j]) swap(nums[i], nums[j]);
+            }
         }
 
-        // Step 2: Sort
-        sort(even.begin(), even.end());        // ascending
-        sort(odd.rbegin(), odd.rend());        // descending
-
-        // Step 3: Place them back
-        int e = 0, o = 0;
-        for (int i = 0; i < n; i++) {
-            if (i % 2 == 0) nums[i] = even[e++];
-            else nums[i] = odd[o++];
+        // Sort odd indices (descending)
+        for(int i = 1; i < n; i += 2) {
+            for(int j = i + 2; j < n; j += 2) {
+                if(nums[i] < nums[j]) swap(nums[i], nums[j]);
+            }
         }
 
         return nums;
