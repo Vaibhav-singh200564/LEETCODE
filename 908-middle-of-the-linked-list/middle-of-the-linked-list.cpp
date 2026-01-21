@@ -1,4 +1,3 @@
-
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
@@ -13,6 +12,7 @@ public:
         for(int i=1; i<=midIdx; i++){
             mid=mid->next;
         }
-        return mid;
+          return mid;
     }
+  
 };
