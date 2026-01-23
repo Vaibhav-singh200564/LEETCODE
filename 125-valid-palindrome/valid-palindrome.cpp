@@ -1,12 +1,14 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-        string cleaned = "";
-        for (char c : s) {
-            if (isalnum(c)) cleaned += tolower(c);
+        string s1 = "";
+        for(char ch : s){
+            if(isalnum(ch)){
+                s1 += tolower(ch);
+            }
         }
-        string reversedStr = cleaned;
-        reverse(reversedStr.begin(), reversedStr.end());
-        return cleaned == reversedStr;
+        string rev = s1;
+        reverse(rev.begin(), rev.end());
+        return rev == s1;   // ✅ compare the processed strings
     }
 };
