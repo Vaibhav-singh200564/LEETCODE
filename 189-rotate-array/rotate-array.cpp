@@ -2,37 +2,17 @@ class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
         int n = nums.size();
-        if (n == 0) return; 
-        k = k % n; 
+        k = k % n;
 
-        if (k > 0) {
-            int i = n - k;
-            int j = n - 1;
-            while (i <= j) {
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
-                i++;
-                j--;
-            }
-            i = 0;
-            j = n - k - 1;
-            while (i <= j) {
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
-                i++;
-                j--;
-            }
-            i = 0;
-            j = n - 1;
-            while (i <= j) {
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
-                i++;
-                j--;
-            }
+        vector<int> v(n);   // ❌ vector<int> v(); → creates a function
+                            // ✅ we need a vector of size n
+
+        for (int i = 0; i < n; i++) {
+            v[(i + k) % n] = nums[i];
+        }
+
+        for (int i = 0; i < n; i++) {
+            nums[i] = v[i];   
         }
     }
 };
