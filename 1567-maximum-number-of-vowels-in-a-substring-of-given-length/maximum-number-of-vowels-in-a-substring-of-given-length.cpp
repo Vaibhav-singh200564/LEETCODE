@@ -1,15 +1,38 @@
 class Solution {
 public:
-    int maxVowels(string s, int k) {
-        string vowels = "aeiou";
-        int n = s.size();
-        int count = 0, ans = 0;
+    bool isVowel(char c) {
+        return (c=='a' || c=='e' || c=='i' || c=='o' || c=='u');
+    }
 
-        for (int i = 0; i < n; i++) {
-            if (vowels.find(s[i]) != string::npos) count++; // add new char
-            if (i >= k && vowels.find(s[i - k]) != string::npos) count--; // remove old char
-            ans = max(ans, count);
+    int maxVowels(string s, int k) {
+        int n = s.length();
+        int maxVowel = 0;
+        int countVowel = 0;
+
+        // first window
+        for(int i = 0; i < k; i++){
+            if(isVowel(s[i])){
+                countVowel++;
+            }
         }
-        return ans;
+
+        maxVowel = countVowel;
+
+        int i = 1, j = k;
+
+        // sliding window
+        while(j < n){
+            if(isVowel(s[j])) countVowel++;
+            if(isVowel(s[i-1])) countVowel--;
+
+            if(maxVowel < countVowel){
+                maxVowel = countVowel;
+            }
+
+            i++;
+            j++;
+        }
+
+        return maxVowel;
     }
 };
