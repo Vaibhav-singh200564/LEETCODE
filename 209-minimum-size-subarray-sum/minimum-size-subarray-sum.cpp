@@ -3,19 +3,20 @@ public:
     int minSubArrayLen(int target, vector<int>& nums) {
         int n = nums.size();
         int sum = 0;
-        int left = 0;
         int minLen = n + 1;
 
-        for(int right = 0; right < n; right++) {
-            sum += nums[right];
+        int i = 0;                 // start pointer
 
-            while(sum >= target) {
-                int len = right - left + 1;
-                if(len < minLen) {
+        for (int j = 0; j < n; j++) {   // end pointer
+            sum += nums[j];
+
+            while (sum >= target) {
+                int len = j - i + 1;
+                if (len < minLen) {
                     minLen = len;
                 }
-                sum -= nums[left];
-                left++;
+                sum -= nums[i];
+                i++;
             }
         }
 
