@@ -1,12 +1,19 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int minPrefix = 0, maxSum = INT_MIN, prefixSum = 0;
+        int n = nums.size();
+        int maxSum = nums[0];       // initialize to first element
+        int prevSum = nums[0];      // running sum starting with first element
 
-        for (int num : nums) {
-            prefixSum += num;
-            maxSum = max(maxSum, prefixSum - minPrefix);
-            minPrefix = min(minPrefix, prefixSum);
+        // start loop from second element
+        for (int i = 1; i < n; i++) {
+            // either extend previous subarray or start new at nums[i]
+            prevSum = max(nums[i], prevSum + nums[i]);
+
+            // update maxSum if current running sum is bigger
+            if (prevSum > maxSum) {
+                maxSum = prevSum;
+            }
         }
 
         return maxSum;
