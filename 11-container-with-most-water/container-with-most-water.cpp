@@ -1,25 +1,19 @@
-#include <vector>
-using namespace std;
 
 class Solution {
 public:
     int maxArea(vector<int>& height) {
-        int left = 0, right = height.size() - 1;
-        int max_area = 0;
+        int maxWater = 0;
+        int i = 0;
+        int j = height.size() - 1;
 
-        while (left < right) {
-            int h = min(height[left], height[right]);
-            int width = right - left;
-            max_area = max(max_area, h * width);
+        while (i < j) {
+            int width = j - i;
+            int heightt = min(height[i], height[j]);
+            int currWidth = heightt * width;
+            maxWater = max(maxWater, currWidth);
 
-            // Move the pointer with the smaller height
-            if (height[left] < height[right]) {
-                left++;
-            } else {
-                right--;
-            }
+            (height[i] < height[j]) ? i++ : j--;
         }
-
-        return max_area;
+        return maxWater;
     }
 };
