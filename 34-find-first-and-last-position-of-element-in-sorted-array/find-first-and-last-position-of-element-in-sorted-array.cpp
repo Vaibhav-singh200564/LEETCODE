@@ -5,8 +5,8 @@ public:
         
         for(int i = 0; i < nums.size(); i++){
             if(nums[i] == target){
-                if(first == -1) first = i; // first occurrence
-                last = i;                  // keep updating last occurrence
+                if(first == -1) first = i; 
+                last = i;                 
             }
         }
         
