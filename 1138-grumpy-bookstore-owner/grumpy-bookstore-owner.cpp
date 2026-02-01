@@ -1,36 +1,35 @@
 class Solution {
 public:
     int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
-        vector<int>& arr=customers;
-        int n=arr.size();
-        int k=minutes;
-        int prevLoss=0;
-        for(int i=0; i<k; i++){
-            if(grumpy[i]==1) prevLoss+=arr[i];
-        } 
-        int maxLoss=prevLoss;
-        int i=1;
-        int j=k;
-        int maxIdx=0;
-        while(j<n){
-            int currLoss=prevLoss;
-            if(grumpy[j]==1) currLoss+=arr[j];
-            if(grumpy[i-1]==1) currLoss-=arr[i-1];
-            if(maxLoss<currLoss){
-                maxLoss=currLoss;
-                maxIdx=i;
+        vector<int>& arr = customers;
+        int n = arr.size();
+        int k = minutes;
+        int maxLoss = 0;
+        int maxIdx = 0;
+
+        for(int i = 0; i <= n - k; i++){
+            int currLoss = 0;
+            for(int j = i; j < i + k; j++){
+                if(grumpy[j] == 1)   // ✅ i → j
+                    currLoss += arr[j];
             }
-            prevLoss=currLoss;
-            i++;
-            j++;
+            if(maxLoss < currLoss){
+                maxLoss = currLoss;
+                maxIdx = i;
+            }
         }
-        for(int i=maxIdx; i<maxIdx+k; i++){
-            grumpy[i]=0;
+
+        for(int i = maxIdx; i < maxIdx + k; i++){
+            if(grumpy[i] == 1)
+                grumpy[i] = 0;
         }
-        int sum=0;
-        for(int i=0; i<n; i++){
-            if(grumpy[i]==0) sum+=arr[i];
+
+        int sum = 0;
+        for(int i = 0; i < n; i++){
+            if(grumpy[i] == 0)       // ✅ condition added
+                sum += arr[i];      // ✅ grumpy → arr
         }
-        return sum;
+
+        return sum;                 // ✅ missing return
     }
 };
