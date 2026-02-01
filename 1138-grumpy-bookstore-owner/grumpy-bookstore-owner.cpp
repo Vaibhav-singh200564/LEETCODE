@@ -1,18 +1,17 @@
 class Solution {
 public:
     int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
-        int k=minutes;
         vector<int>& arr=customers;
         int n=arr.size();
-        int maxLoss=0;
+        int k=minutes;
         int prevLoss=0;
         for(int i=0; i<k; i++){
             if(grumpy[i]==1) prevLoss+=arr[i];
-        }
-        maxLoss=prevLoss;
-        int maxIdx=0;
+        } 
+        int maxLoss=prevLoss;
         int i=1;
         int j=k;
+        int maxIdx=0;
         while(j<n){
             int currLoss=prevLoss;
             if(grumpy[j]==1) currLoss+=arr[j];
