@@ -10,19 +10,20 @@ public:
         }
         int idx=-1;
         for(int i=0; i<n; i++){
-            if(suf[i]>0){
+            if(suf[i]>=0){
                 idx=i;
                 break;
             }
         }
-        if(idx==-1) return 0;
+
+        if(idx == -1) return 0;   // ⭐ FIX
+
         int x=1;
         int maxSum=0;
         for(int i=idx; i<n; i++){
-            maxSum+=satisfaction[i]*x;
+            maxSum+=(satisfaction[i]*x);
             x++;
-        }
-        return maxSum;
-        
+         }
+         return maxSum;
     }
 };
