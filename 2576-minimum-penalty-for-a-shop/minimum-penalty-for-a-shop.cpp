@@ -2,30 +2,33 @@ class Solution {
 public:
     int bestClosingTime(string customers) {
         int n = customers.size();
-        int pre[n + 1];
-        int suff[n + 1];
-        pre[0] = 0;
+        int pref[n + 1];
+        int suf[n + 1];
+
+        pref[0] = 0;
         for (int i = 0; i < n; i++) {
             int count = 0;
             if (customers[i] == 'N') count++;
-            pre[i + 1] = pre[i] + count;
+            pref[i + 1] = pref[i] + count;
         }
-        suff[n] = 0;
+
+        suf[n] = 0;
         for (int i = n - 1; i >= 0; i--) {
-            int Ycount = 0;
-            if (customers[i] == 'Y') Ycount++;
-            suff[i] = suff[i + 1] + Ycount;
+            int scount = 0;
+            if (customers[i] == 'Y') scount++;
+            suf[i] = suf[i + 1] + scount;
         }
-        int minPen = n;
+
+        int minPen = INT_MAX;
         for (int i = 0; i <= n; i++) {
-            pre[i] = pre[i] + suff[i];
-            int pen = pre[i];
-            minPen = min(minPen, pen);
+            pref[i] += suf[i];
+            minPen = min(minPen, pref[i]);
         }
+
         for (int i = 0; i <= n; i++) {
-            int pen = pre[i];
-            if (pen == minPen) return i;
+            if (pref[i] == minPen) return i;
         }
+
         return n;
     }
 };
