@@ -1,31 +1,22 @@
 class Solution {
 public:
     string greatestLetter(string s) {
-
-        set<char> lower, upper;
-
-        // Step 1: Fill sets
-        for(char c : s) {
-            if(islower(c))
-                lower.insert(c);
-            else
-                upper.insert(c);
+        set<char> lower,upper;
+        for(int ch:s){
+            if(islower(ch)){
+                lower.insert(ch);
+            }else{
+                upper.insert(ch);
+            }
         }
-
-        string ans = "";
-
-        // Step 2: Find special letters
-        for(char c : lower) {
-            if(upper.count(toupper(c))) {
+        string ans="";
+        for(char c:lower){
+            if(upper.count(toupper(c))){
                 ans.push_back(toupper(c));
             }
         }
-
-        // Step 3: Return greatest
         if(ans.empty()) return "";
-
-        sort(ans.begin(), ans.end());
-
-        return string(1, ans.back());
+        sort(ans.begin(),ans.end());
+        return string(1,ans.back());
     }
 };
