@@ -2,31 +2,28 @@ class Solution {
 public:
     void duplicateZeros(vector<int>& arr) {
 
+        vector<int> ans;
         int n = arr.size();
 
-        // Answer vector of same size
-        vector<int> ans(n);
+        for (int i = 0; i < n; i++) {
 
-        int k = 0;  // write pointer
-
-        for (int i = 0; i < n && k < n; i++) {
-
-            // If zero → duplicate
-            if (arr[i] == 0) {
-
-                ans[k++] = 0;
-
-                // Insert second zero only if space exists
-                if (k < n)
-                    ans[k++] = 0;
+            // Normal element
+            if (arr[i] != 0) {
+                ans.push_back(arr[i]);
             }
             else {
-                // Normal element
-                ans[k++] = arr[i];
+                // Zero → duplicate
+                ans.push_back(0);
+
+                if (ans.size() < n)
+                    ans.push_back(0);
             }
+
+            // Stop if full
+            if (ans.size() >= n)
+                break;
         }
 
-        // Copy back to original array
         arr = ans;
     }
 };
