@@ -10,7 +10,10 @@ public:
 
         int m = len - n - 1;
 
-        if(m < 0) return head->next;
+        if(n==len){
+            head=head->next;
+            return head;
+        }
 
         ListNode* temp1 = head;
         for(int i = 0; i < m; i++){
