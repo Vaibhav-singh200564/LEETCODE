@@ -36,7 +36,7 @@ public:
                 tempB=tempB->next;
                 tempA=tempA->next;
             }
-            return tempA;
+            return tempB;
         }
     }
 };
