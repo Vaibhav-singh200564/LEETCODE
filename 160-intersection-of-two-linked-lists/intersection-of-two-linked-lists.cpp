@@ -25,7 +25,7 @@ public:
                 tempA=tempA->next;
                 tempB=tempB->next;
             }
-            return tempA;
+            return tempB;
         }
         else{
             int diffB=lenB-lenA;
