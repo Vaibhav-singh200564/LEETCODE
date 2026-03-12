@@ -16,15 +16,13 @@ public:
         if (k == 0) return head;
         
         temp = head;
-        for (int i = 1; i < n - k; i++) {
+        for (int i = 1; i <n-k; i++) {
             temp = temp->next;
         }
-        
-        ListNode* newHead = temp->next;
-        temp->next = NULL;
-        tail->next = head;
-        head = newHead;
-        
+        // ListNode* newHead = temp->next;
+        tail->next=head;
+        head=temp->next;
+        temp->next=NULL;
         return head;
     }
 };
