@@ -1,8 +1,9 @@
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-        ListNode* lo = new ListNode(100);  // dummy node for < x
-        ListNode* hi = new ListNode(200);  // dummy node for >= x
+        ListNode* lo = new ListNode(100);
+        ListNode* hi = new ListNode(200);
+
         ListNode* tempLo = lo;
         ListNode* tempHi = hi;
         ListNode* temp = head;
@@ -10,16 +11,17 @@ public:
         while (temp != NULL) {
             if (temp->val < x) {
                 tempLo->next = temp;
+                temp = temp->next;
                 tempLo = tempLo->next;
             } else {
                 tempHi->next = temp;
+                temp = temp->next;
                 tempHi = tempHi->next;
             }
-            temp = temp->next;
         }
 
-        tempHi->next = NULL;         // important to avoid cycle
-        tempLo->next = hi->next;     // join both lists
+        tempHi->next = NULL;          // end hi list
+        tempLo->next = hi->next;      // connect lo -> hi
 
         return lo->next;
     }
