@@ -5,19 +5,21 @@ int reverse(int n){
     while(n>0){
         r=r*10;
         r=r+(n%10);
-        n=n/10;
+        n/=10;
     }
     return r;
 }
     int countDistinctIntegers(vector<int>& nums) {
         int n=nums.size();
-        unordered_set<int> s;
+        // int rev;
         for(int i=0; i<n; i++){
-            int rev=reverse(nums[i]);
+           int rev=reverse(nums[i]);
+            nums.push_back(rev);
+        }
+        unordered_set<int> s;
+        for(int i=0; i<nums.size(); i++){
             s.insert(nums[i]);
-            s.insert(rev);
         }
         return s.size();
     }
-
 };
