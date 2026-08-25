@@ -5,7 +5,7 @@ public:
         for(auto x:nums){
             freq[x]++;
         }
-        set<int> s;
+        // set<int> s;
         int maxi=0;
         for(auto x:freq){
             maxi=max(maxi,x.second);
