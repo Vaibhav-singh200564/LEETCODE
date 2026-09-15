@@ -1,17 +1,19 @@
 class Solution {
 public:
     int thirdMax(vector<int>& nums) {
-        set<int> st;
+        set<int> s;
         for(int x:nums){
-            st.insert(x);
+            s.insert(x);
         }
-        if(st.size()<3){
-            return *st.rbegin();
+        priority_queue<int> pq;
+        for(auto x:s){
+            pq.push(x);
         }
-        auto it=st.rbegin();
-        it++;
-        it++;
-        return *it;
+        if(pq.size()<3){
+            return pq.top();
+        }
+        pq.pop();
+        pq.pop();
+        return pq.top();
     }
-
 };
