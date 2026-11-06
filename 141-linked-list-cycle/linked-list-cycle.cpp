@@ -1,4 +1,3 @@
-
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
@@ -10,5 +9,6 @@ public:
             if(slow==fast) return true;
         }
         return false;
+
     }
 };
